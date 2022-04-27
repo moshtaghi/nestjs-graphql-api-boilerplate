@@ -10,15 +10,22 @@ type User {
   lastName: String
 }
 
+type LoginResponse {
+  access_token: String!
+  user: User!
+}
+
 type Query {
   users: [User!]!
   user(id: String!): User!
+  me: User!
 }
 
 type Mutation {
   createUser(createUserInput: CreateUserInput!): User!
   updateUser(updateUserInput: UpdateUserInput!): User!
   removeUser(id: String!): Boolean!
+  login(loginUserInput: LoginUserInput!): LoginResponse!
 }
 
 input CreateUserInput {
@@ -34,4 +41,9 @@ input UpdateUserInput {
   firstName: String
   lastName: String
   id: String!
+}
+
+input LoginUserInput {
+  email: String!
+  password: String!
 }
